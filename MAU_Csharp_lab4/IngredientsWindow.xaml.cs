@@ -63,7 +63,7 @@ namespace MAU_Csharp_lab4
         {
             for (int i = 0; i < tempIngredients.Length; i++)
             {
-                tempIngredients[i] = recipe.Ingredients[i];
+                tempIngredients[i] = recipe.GetIngredient(i);
             }
         }
 

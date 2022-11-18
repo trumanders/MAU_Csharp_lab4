@@ -8,42 +8,65 @@ namespace MAU_Csharp_lab4
 {
     public class Recipe
     {
-        public int NumberOfIngredients = 0;
-        public int MaxNumberOfIngredients { get; }
-        public string[] Ingredients { get; private set; }
-        public string Description { get; private set; }
-        public string Category { get; private set; }
-        public int CategoryIndex { get; private set; }
-        public string Name { get; set; }
+        //public int NumberOfIngredients = 0;
+        private int maxNumberOfIngredients;
+        public int MaxNumberOfIngredients 
+        {
+            get { return maxNumberOfIngredients; }
+        }
 
+        private string[] ingredients;       
+        private string description;
+        public string Description
+        {
+            get { return description; }
+        }
+        private string category;
+        public string Category { get { return category; } }
+        private int categoryIndex;
+        private string name;
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }
+
+        public string GetIngredient(int i)
+        {
+            return ingredients[i];
+        }
+
+        
+
+        // Constructor
         public Recipe(int maxNumberOfIngredients)
         {
-            this.MaxNumberOfIngredients = maxNumberOfIngredients;
-            Ingredients = new string[maxNumberOfIngredients];
+            this.maxNumberOfIngredients = maxNumberOfIngredients;
+            ingredients = new string[maxNumberOfIngredients];
         }
 
 
         // Adds the ingredients array to the object
         public void AddIngredients(string[] ingredients)
         {
-            this.Ingredients = ingredients;
+            this.ingredients = ingredients;
         }
 
         public void AddDescription(string description)
         {
-            this.Description = description;
+            this.description = description;
         }
 
         public void AddCategory(int categoryIndex)
         {
             // Pass in the selected combobox index and set the recipe category string
-            this.Category = ((FoodCategory)categoryIndex).ToString();
-            this.CategoryIndex = categoryIndex;
+            this.category = ((FoodCategory)categoryIndex).ToString();
+            this.categoryIndex = categoryIndex;
         }
 
         public int GetCategoryIndex()
         {
-            return this.CategoryIndex;
+            return this.categoryIndex;
         }
 
         //public void AddCategory(string category)
@@ -54,7 +77,7 @@ namespace MAU_Csharp_lab4
         public int GetNumberOfIngredients()
         {
             int numberOfIngredients = 0;
-            foreach (var str in Ingredients)
+            foreach (var str in ingredients)
             {
                 if (str != null && str.Length > 0)
                     numberOfIngredients++;
@@ -73,13 +96,13 @@ namespace MAU_Csharp_lab4
         private string GetRecipeInfo()
         {
             string recipeInfo = "INGREDIENTS:\n";
-            foreach (var str in Ingredients)
+            foreach (var str in ingredients)
             {
                 if (str == null || str == "")
                     continue;
                 recipeInfo += $"{str}\n";
             }
-            recipeInfo += $"\nDESCRIPTION:\n{Description}\n";         
+            recipeInfo += $"\nDESCRIPTION:\n{description}\n";         
             return recipeInfo;
         }
     }

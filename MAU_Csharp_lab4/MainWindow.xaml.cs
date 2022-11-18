@@ -8,8 +8,8 @@ namespace MAU_Csharp_lab4
     /// </summary>
     public partial class MainWindow : Window
     {
-        const int maxNumberOfRecipes = 50;
-        public const int MAX_NUMBER_OF_INGREDIENTS = 30;
+        private const int maxNumberOfRecipes = 50;
+        private const int MAX_NUMBER_OF_INGREDIENTS = 30;
         private Recipe currentRecipe;
         private RecipeManager recipeManager;
         private bool isEditing = false;
@@ -151,7 +151,6 @@ namespace MAU_Csharp_lab4
             }
         }
 
-
         
         private void RecipeDoubleClick(object sender, RoutedEventArgs e)
         {            
@@ -161,7 +160,6 @@ namespace MAU_Csharp_lab4
             // Call method to show recipe info by passing the selected recipe
             recipeManager.GetRecipeAt(lbx_recipesName.SelectedIndex).ShowRecipeInfo();
         }
-
         
 
         private void DisableButtonsDefault()
