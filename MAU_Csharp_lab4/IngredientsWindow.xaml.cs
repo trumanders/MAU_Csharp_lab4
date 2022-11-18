@@ -44,7 +44,7 @@ namespace MAU_Csharp_lab4
 
             // Disable buttons as default
             DisableButtons();                        
-            UpdateListbox();
+            UpdateListboxAndNumber();
         }
 
 
@@ -85,7 +85,7 @@ namespace MAU_Csharp_lab4
                 tbx_ingredient.Clear();
             }
             else MessageBox.Show("Cannot add more ingredients");
-            UpdateListbox();
+            UpdateListboxAndNumber();
             SetOkButton();
         }
 
@@ -113,20 +113,19 @@ namespace MAU_Csharp_lab4
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
             tempIngredients[lbx_ingredientList.SelectedIndex] = "";
-            //FixEmptyElementsInIngredientsArray();
-            UpdateListbox();
+            UpdateListboxAndNumber();
             SetOkButton();
         }
 
 
         // Updates the listbox of ingredients to show changes/existing ingredients
-        private void UpdateListbox()
+        private void UpdateListboxAndNumber()
         {
             // Remove empty elements
             FixEmptyElementsInIngredientsArray();
-
             lbx_ingredientList.ItemsSource = null;
             lbx_ingredientList.ItemsSource = tempIngredients;
+            lbl_numberOfIngredients.Content = GetNumberOfAddedIngredients().ToString();
         }
         
         
@@ -200,6 +199,17 @@ namespace MAU_Csharp_lab4
                     }
                 }
             }
+        }
+
+        private int GetNumberOfAddedIngredients()
+        {
+            int num = 0;
+            for (int i = 0; i < tempIngredients.Length; i++)
+            {
+                if (tempIngredients[i] == null)                
+                    return i;                
+            }
+            return tempIngredients.Length;
         }
     }
 }

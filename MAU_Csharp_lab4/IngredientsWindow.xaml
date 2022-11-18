@@ -20,7 +20,7 @@
             <ColumnDefinition Width="10"/>
         </Grid.ColumnDefinitions>
         <Label Content="Number of ingredients" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left"/>
-        <Label Content="number" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right"/>
+        <Label x:Name="lbl_numberOfIngredients" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right"/>
 
         <GroupBox Header="Ingredient" Grid.Row="2" Grid.Column="1">
             <Grid>
