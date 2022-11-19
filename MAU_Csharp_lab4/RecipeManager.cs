@@ -19,9 +19,14 @@ namespace MAU_Csharp_lab4
 
 
         public bool AddRecipe(Recipe recipe)
-        {          
+        {
             if (recipe == null)
                 return false;
+            if (numberOfRecipes >= maxNumberOfRecipes)
+            {
+                MessageBox.Show($"Can't add more than {maxNumberOfRecipes} recipes.");
+                return false;
+            }
             allRecipes[numberOfRecipes] = recipe;
             numberOfRecipes++;
             return true;    

@@ -8,8 +8,8 @@ namespace MAU_Csharp_lab4
     /// </summary>
     public partial class MainWindow : Window
     {
-        private const int maxNumberOfRecipes = 50;
-        private const int MAX_NUMBER_OF_INGREDIENTS = 30;
+        private const int maxNumberOfRecipes = 5;
+        private const int MAX_NUMBER_OF_INGREDIENTS = 5;
         private Recipe currentRecipe;
         private RecipeManager recipeManager;
         private bool isEditing = false;
@@ -31,7 +31,7 @@ namespace MAU_Csharp_lab4
         private void btn_AddIngredients_Click(object sender, RoutedEventArgs e)
         {                    
             IngredientsWindow ingredientsWindow = new IngredientsWindow(currentRecipe);
-            ingredientsWindow.Show();
+            ingredientsWindow.ShowDialog();
         }
 
 
@@ -84,10 +84,7 @@ namespace MAU_Csharp_lab4
                 isEditing = false;                
             }
             else
-            {
-                if (!recipeManager.AddRecipe(currentRecipe))
-                    MessageBox.Show("Could not add recipe");
-            }        
+                recipeManager.AddRecipe(currentRecipe);
 
             // Set Recipe Listbox
             UpdateRecipesList();

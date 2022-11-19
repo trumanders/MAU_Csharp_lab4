@@ -32,9 +32,9 @@ namespace MAU_Csharp_lab4
 
         // Pass in the current recipe in creation from main window
         public IngredientsWindow(Recipe recipe)
-        {            
+        {
             InitializeComponent();
-            this.currentRecipe = recipe;
+            this.currentRecipe = recipe;         
 
             // Set the temporary array to correct size defined in main window
             tempIngredients = new string[recipe.MaxNumberOfIngredients];
@@ -43,7 +43,7 @@ namespace MAU_Csharp_lab4
             ImportExistingIngredientsFromRecipe(recipe);
 
             // Disable buttons as default
-            DisableButtons();                        
+            DisableButtons();
             UpdateListboxAndNumber();
         }
 
@@ -79,14 +79,15 @@ namespace MAU_Csharp_lab4
                 // Change button back to "add"
                 btn_add.Content = "Add";
                 tbx_ingredient.Clear();
-            }            
-            else if (AddIngredientToArray())
-            {
-                tbx_ingredient.Clear();
             }
-            else MessageBox.Show("Cannot add more ingredients");
-            UpdateListboxAndNumber();
-            SetOkButton();
+            else if (AddIngredientToArray())
+                tbx_ingredient.Clear();
+
+            else MessageBox.Show($"Can't add more than {currentRecipe.MaxNumberOfIngredients} recipes.");
+            {
+                UpdateListboxAndNumber();
+                SetOkButton();
+            }
         }
 
 
@@ -101,7 +102,7 @@ namespace MAU_Csharp_lab4
 
         // Edit ingredient - button click
         private void Edit_Click(object sender, RoutedEventArgs e)
-        {   
+        {
             isEditing = true;
             editingIndex = lbx_ingredientList.SelectedIndex;
             btn_add.Content = "Change";
@@ -127,8 +128,8 @@ namespace MAU_Csharp_lab4
             lbx_ingredientList.ItemsSource = tempIngredients;
             lbl_numberOfIngredients.Content = GetNumberOfAddedIngredients().ToString();
         }
-        
-        
+
+
         // Ingredient textbox change
         private void IngredientTextChanged(object sender, TextChangedEventArgs e)
         {
@@ -164,7 +165,7 @@ namespace MAU_Csharp_lab4
                 {
                     tempIngredients[i] = tbx_ingredient.Text;
                     return true;
-                }                
+                }
             }
             return false;
         }
@@ -206,8 +207,8 @@ namespace MAU_Csharp_lab4
             int num = 0;
             for (int i = 0; i < tempIngredients.Length; i++)
             {
-                if (tempIngredients[i] == null)                
-                    return i;                
+                if (tempIngredients[i] == null)
+                    return i;
             }
             return tempIngredients.Length;
         }
